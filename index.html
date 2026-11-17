@@ -8,7 +8,51 @@
         <link rel="stylesheet" href="./styles.css" />
     </head>
     <body>
-        <h1>Init Project</h1>
+        <h1>JS Tabs</h1>
+        <ul class="btn-row" id="tabs">
+            <li class="item JSTabs--active">
+                <a class="btn" href="#tab1">Tab 1</a>
+            </li>
+            <li class="item">
+                <a class="btn" href="#tab2">Tab 2</a>
+            </li>
+            <li class="item">
+                <a class="btn" href="#tab3">Tab 3</a>
+            </li>
+        </ul>
+
+        <!-- Tab1 khi có class --active sẽ ẩn nội dung những tabs khác -->
+        <div class="tabs">
+            <div id="tab1">
+                <h2>Tab content 1</h2>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus adipisci dolorem itaque amet. Aspernatur labore ad quo fugit ducimus perferendis perspiciatis quisquam asperiores incidunt, placeat omnis modi sit harum ipsa, distinctio cumque quidem dolores ab. Odit vitae, provident totam nulla reiciendis excepturi animi praesentium, amet assumenda libero doloremque fuga ipsum necessitatibus quas voluptates expedita voluptatem sit repellendus possimus, dolorum nostrum
+                    culpa officia. Ducimus dignissimos sed adipisci voluptatibus vitae natus deleniti, consectetur architecto maiores modi expedita fugiat, facere veniam itaque blanditiis, commodi quasi eligendi quisquam atque ipsam. Eos hic adipisci ipsam perspiciatis tempore voluptatem, unde molestias vel, enim debitis minima iusto.
+                </p>
+            </div>
+            <div hidden id="tab2">
+                <h2>Tab content 2</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio blanditiis a voluptatum explicabo corrupti, ex fugit! Neque numquam repellat fugiat? Nobis, velit quis, ullam eos maxime doloribus animi eius nostrum minima iste quia quae nisi amet asperiores reiciendis a corporis vero rem praesentium quisquam natus necessitatibus tenetur. Quia laborum ut eum, eligendi quisquam ipsum, quidem possimus amet dicta quasi suscipit at nemo placeat qui quo excepturi. Nesciunt, sint.
+                    Eos aliquam eius adipisci. Accusantium, ratione accusamus suscipit porro beatae impedit veniam commodi ad a mollitia atque sapiente aut molestiae rem modi vero, dolorem veritatis cupiditate molestias totam. Minus soluta mollitia consequuntur quidem labore corporis voluptates sapiente iure, natus illum nam eos quo vel asperiores, eveniet sequi, aliquam excepturi laborum error hic? Accusantium ab, quasi tempora necessitatibus officia quia repellat quod aut totam suscipit, alias
+                    dolores iste at voluptate iure, omnis aspernatur consequuntur hic inventore odio nulla ullam possimus adipisci. Odio, quia!
+                </p>
+            </div>
+            <div hidden id="tab3">
+                <h2>Tab content 3</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem expedita debitis unde placeat, nihil ipsum possimus, accusamus neque ratione similique voluptate cumque eius pariatur est dolorum mollitia nam repellat quo labore laudantium molestiae impedit blanditiis corrupti animi. Culpa hic tenetur ipsa. Fuga accusantium excepturi numquam doloribus, quae earum, quaerat ab recusandae doloremque necessitatibus voluptatem minima ex ut modi illum praesentium libero saepe
+                    mollitia at voluptates sed fugit dicta eos amet. Nisi voluptatum autem aliquam iusto est cupiditate soluta iste commodi. Asperiores perspiciatis est nesciunt ab et voluptas ratione quo optio nemo inventore accusamus, obcaecati eligendi animi dolorem, at sequi fugit nihil impedit aliquam ipsum dicta quod dignissimos! Optio asperiores beatae omnis consequuntur? Facilis quaerat repudiandae laborum unde quasi esse corporis, quam earum sint, amet provident nemo quos veritatis quas
+                    impedit minus at velit? Ducimus ut quasi esse at doloremque magnam et praesentium, pariatur quas expedita laborum nemo nostrum beatae? Eos aliquam perspiciatis voluptatem earum non exercitationem! Tempora debitis nesciunt quos minima, vero reiciendis voluptates. Temporibus eaque unde deserunt. Quis eveniet modi tempore? Aliquid voluptates, perspiciatis eum at commodi facilis consequatur tempora eos quidem animi nemo nihil excepturi aliquam laboriosam explicabo delectus fugiat
+                    error rerum autem possimus molestias. Ipsum, iure architecto.
+                </p>
+            </div>
+        </div>
     </body>
-    <script src="main.js"></script>
+    <script src="./tabs.js"></script>
+    <script>
+        // Todo
+        // tabs.toggle("#tab3"); Kích hoạt thủ công tab thứ 3 mở lên
+        // tabs.destroy(); Hủy toàn bộ tính năng, trả về nguyên bản
+    </script>
 </html>
