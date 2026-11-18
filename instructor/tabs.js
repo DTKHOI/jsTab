@@ -65,10 +65,14 @@ Tabzy.prototype.removeTabsActiveClasses = function () {
 
 Tabzy.prototype.switch = function (panelSelector) {
     let panel = panelSelector;
-    if (typeof panelSelector === "object") {
+    if (typeof panelSelector === "object" && panelSelector) {
         panel = panelSelector.getAttribute("href");
+    } else if (!document.querySelector(panelSelector)) {
+        console.error("cannot find this tab!");
+        return;
     }
 
+    console.log("pass");
     this._activePanel(document.querySelector(panel));
     this._activeTab(document.querySelector(`[href="${panel}"]`));
 };
@@ -76,10 +80,10 @@ Tabzy.prototype.switch = function (panelSelector) {
 Tabzy.prototype.destroy = function () {
     this.removeTabsActiveClasses();
     this.panels.forEach((panel) => (panel.hidden = false));
-    this.tabs.forEach((tab) => {
-        tab.onclick = null;
-    });
+    this.container = null;
+    this.tabs = null;
+    this.panels = null;
 };
 
 const tabs = new Tabzy("#tabs", { pinHash: true });
-tabs.destroy();
+// tabs.destroy();
