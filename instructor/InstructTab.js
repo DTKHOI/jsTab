@@ -31,6 +31,7 @@ function Tabzy(selector, options = {}) {
 
 Tabzy.prototype._init = function () {
     const hash = location.hash;
+    console.log(`hash hiện tại: ${hash}`);
     const tabToActivate = (this.opt.remember && hash && this.tabs.find((tab) => tab.getAttribute("href") === hash)) || this.tabs[0];
 
     this._activateTab(tabToActivate);
@@ -55,6 +56,7 @@ Tabzy.prototype._activateTab = function (tab) {
     panelActive.hidden = false;
 
     if (this.opt.remember) {
+        console.log(`hash trên url tiếp theo: ${tab.getAttribute("href")}`);
         history.replaceState(null, null, tab.getAttribute("href"));
     }
 };
@@ -88,4 +90,5 @@ Tabzy.prototype.destroy = function () {
     this.panels = null;
 };
 
-const tabs = new Tabzy("#tabs", { remember: false });
+const tabs = new Tabzy("#tabs", { remember: true });
+const tabs1 = new Tabzy("#tabs1", { remember: true });
