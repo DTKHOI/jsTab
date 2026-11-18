@@ -1,4 +1,4 @@
-function Tabzy(selector) {
+function Tabzy(selector, options = {}) {
     this.container = document.querySelector(selector);
     if (!this.container) {
         console.error(`No container found for selector ${selector}`);
@@ -24,22 +24,20 @@ function Tabzy(selector) {
 
     if (hasError) return;
 
+    this.opt = Object.assign({ remember: false }, options);
     this._tabHTML = this.container.innerHTML;
     this._init();
 }
 
 Tabzy.prototype._init = function () {
-    const tabActive = this.tabs[0];
-    tabActive.closest("li").classList.add("Tabzy--active");
+    const hash = location.hash;
+    const tabToActivate = (this.opt.remember && hash && this.tabs.find((tab) => tab.getAttribute("href") === hash)) || this.tabs[0];
 
-    this.panels.forEach((panel) => (panel.hidden = true));
+    this._activateTab(tabToActivate);
 
     this.tabs.forEach((tab) => {
         tab.onclick = (event) => this._handleTabClick(event, tab);
     });
-
-    const panelActive = this.panels[0];
-    panelActive.hidden = false;
 };
 
 Tabzy.prototype._handleTabClick = function (event, tab) {
@@ -55,6 +53,10 @@ Tabzy.prototype._activateTab = function (tab) {
     this.panels.forEach((panel) => (panel.hidden = true));
     const panelActive = document.querySelector(tab.getAttribute("href"));
     panelActive.hidden = false;
+
+    if (this.opt.remember) {
+        history.replaceState(null, null, tab.getAttribute("href"));
+    }
 };
 
 Tabzy.prototype.switch = function (input) {
@@ -86,5 +88,4 @@ Tabzy.prototype.destroy = function () {
     this.panels = null;
 };
 
-const tabs = new Tabzy("#tabs");
-tabs.switch("#tab3");
+const tabs = new Tabzy("#tabs", { remember: false });
