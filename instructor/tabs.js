@@ -1,4 +1,5 @@
-function Tabzy(selector) {
+function Tabzy(selector, options = {}) {
+    this.pinHash = options.pinHash;
     this.container = document.querySelector(selector);
     if (!this.container) {
         console.error(`No container found for selector ${selector}`);
@@ -29,27 +30,56 @@ function Tabzy(selector) {
 
 Tabzy.prototype._init = function () {
     const tabActive = this.tabs[0];
-    tabActive.closest("li").classList.add("Tabzy--active");
-
-    this.panels.forEach((panel) => (panel.hidden = true));
+    this._activeTab(tabActive);
 
     this.tabs.forEach((tab) => {
         tab.onclick = (event) => this._handleTabClick(event, tab);
     });
 
     const panelActive = this.panels[0];
-    panelActive.hidden = false;
+    this._activePanel(panelActive);
 };
 
 Tabzy.prototype._handleTabClick = function (event, tab) {
     event.preventDefault();
-
-    this.tabs.forEach((tab) => tab.closest("li").classList.remove("Tabzy--active"));
-    tab.closest("li").classList.add("Tabzy--active");
-
-    this.panels.forEach((panel) => (panel.hidden = true));
     const panelActive = document.querySelector(tab.getAttribute("href"));
+
+    this._activeTab(tab);
+    this._activePanel(panelActive);
+};
+
+// My code
+Tabzy.prototype._activePanel = function (panelActive) {
+    this.panels.forEach((panel) => (panel.hidden = true));
     panelActive.hidden = false;
 };
 
-const tabs = new Tabzy("#tabs");
+Tabzy.prototype._activeTab = function (tab) {
+    this.removeTabsActiveClasses();
+    tab.closest("li").classList.add("Tabzy--active");
+};
+
+Tabzy.prototype.removeTabsActiveClasses = function () {
+    this.tabs.forEach((tab) => tab.closest("li").classList.remove("Tabzy--active"));
+};
+
+Tabzy.prototype.switch = function (panelSelector) {
+    let panel = panelSelector;
+    if (typeof panelSelector === "object") {
+        panel = panelSelector.getAttribute("href");
+    }
+
+    this._activePanel(document.querySelector(panel));
+    this._activeTab(document.querySelector(`[href="${panel}"]`));
+};
+
+Tabzy.prototype.destroy = function () {
+    this.removeTabsActiveClasses();
+    this.panels.forEach((panel) => (panel.hidden = false));
+    this.tabs.forEach((tab) => {
+        tab.onclick = null;
+    });
+};
+
+const tabs = new Tabzy("#tabs", { pinHash: true });
+tabs.destroy();
